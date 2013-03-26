@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "HistoryDetailView";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<style type="text/css">
+.subTitleDiv
+{
+    border-bottom : 2px solid #000;
+    margin-left:10px;
+    margin-right:10px;
+    padding-bottom:10px;
+    text-align:right;
+}
+.detailViewDiv
+{
+    height:650px;
+    overflow:auto;
+}
+.fileDiv
+{
+    text-align:right;
+    padding-right: 20px;
+    margin-top : 10px; 
+}
+.container
+    {
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        min-height:400px;
+        height:auto !important;
+        height:400px;
+
+        padding: 10px;
+
+        border: 1px solid lightgray;
+    }
+</style>
+<div class="container"> 
+    <div class="detailViewDiv">
+     <div>
+        <h3>@ViewBag.detailItem.Title</h3>
+    </div>
+    <div class="subTitleDiv">
+            <div>수정인 : @ViewBag.detailItem.Writer</div>
+            <div>최종수정날짜 :@ViewBag.detailItem.Indate</div>
+        </div>
+        <div>
+         <div class="fileDiv">
+     
+           @if (!(ViewBag.fileList == null || ViewBag.fileList.Count == 0))
+           {
+                 <b>파일첨부</b><br />
+               foreach (var fileList in ViewBag.fileList)
+               {
+                    <div><a href="@Url.Action("FileDownload", new { fileName = @fileList.fileName })">@SkhuKB.Util.StringUtil.getOriginalFileName(@fileList.fileName)</a></div>
+               }
+           }
+        </div>
+        <br />
+        <br />
+        @Html.Raw(@SkhuKB.Util.StringUtil.XSSConverter(@ViewBag.detailItem.Contents))
+        </div>
+   
+        </div>
+</div>

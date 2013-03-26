@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<style type="text/css">
+.pagingDiv
+{
+    border-top:2px solid #000;
+    padding-top:8px;   
+    padding-bottom:8px;
+    margin-top: 95px;
+    text-align:center;
+    font-size:1.3em;
+    background:#000;
+    
+}
+.articleListDiv
+{
+    height:581px;
+}
+.pagingDiv a
+{
+    color:#000;
+    text-decoration:none;
+    border:2px solid #fff;
+    border-radius:2px;
+    background:#000;
+    color:#fff;
+    padding:2px;
+}
+.pagingDiv b
+{
+    background:#ccc;
+    color:#111;    
+}
+</style>
+
+@if (ViewBag.articleList == null || (ViewBag.articleList).Count == 0){
+    <div>
+        검색된 값이 없습니다. 
+    </div>
+}
+else
+{
+    <div class="articleListDiv">
+    @foreach (var item in ViewBag.articleList){
+        <div>
+            <h3><a href="@Url.Action("DetailView", new { aIdx = @item.aIdx })">@item.Title</a> </h3>
+        </div>
+        
+        if(item.Contents == ""){  
+            <div>내용이 아직 입력되지 않았습니다.</div>
+        }else{
+
+            if (@item.Contents.Length > 50)
+            {
+                <div>@item.Contents.Substring(0, 49) ...</div>
+            }
+            else
+            {
+                <div>@item.Contents</div>
+            }
+        }
+
+    }
+    </div>
+    <div class="pagingDiv">
+        <a href="@Url.Action("ArticleList", new { page = 1, searchText = @ViewBag.searchText })">처음</a>
+        <a href="@Url.Action("ArticleList", new { page = @ViewBag.paging.getGoPrevPage(), searchText = @ViewBag.searchText })">&lt;&lt;</a>
+
+        @for (var idx = @ViewBag.paging.getPageBegin(); idx <= @ViewBag.paging.getPageEnd(); idx++)
+        {
+            if (@ViewBag.paging.getCurrentPage() == @idx)
+            {
+                <a href="@Url.Action("ArticleList", new { page = @idx, searchText = @ViewBag.searchText })"><b>@idx</b></a>
+            }
+            else
+            {
+                <a href="@Url.Action("ArticleList", new { page = @idx, searchText = @ViewBag.searchText })">@idx</a>
+            }
+        }
+        <a href="@Url.Action("ArticleList", new { page = @ViewBag.paging.getGoNextPage(), searchText = @ViewBag.searchText })">&gt;&gt;</a>
+        <a href="@Url.Action("ArticleList", new { page = @ViewBag.paging.getPageEnd(), searchText = @ViewBag.searchText })">끝</a>
+    </div>
+}

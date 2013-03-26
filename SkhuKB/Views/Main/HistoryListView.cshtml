@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "HistoryView";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>이력 조회</h2>
+<style type="text/css">
+
+.historyListHeaderDiv
+{
+    overflow:hidden;
+    width: 850px;
+    zoom: 1;
+}
+.historyListHeaderDiv div
+{
+    padding:5px;
+    float:left;
+    text-align:center;
+    font-weight:bold;
+    background:#ddd;
+    height:20px;
+    padding-top:10px;
+    
+}    
+.historyListContentsDiv
+{
+    overflow:hidden;
+    width: 830px;
+    zoom: 1;
+}    
+.historyContentsLineDiv div
+{
+    padding:5px;
+    float:left;
+    height:20px;
+    padding-top:10px;
+}
+.historyListTitleDiv
+{
+    width: 470px;
+}
+.historyListIndateDiv
+{
+    width: 200px;
+    text-align:center;
+}
+.historyListWriterDiv
+{
+    width: 100px;
+    
+}
+.container
+    {
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        min-height:400px;
+        height:auto !important;
+        height:400px;
+
+        padding: 10px;
+
+        border: 1px solid lightgray;
+    }
+</style>
+<div class="container">
+    <div class="historyListHeaderDiv">
+        <div class="historyListTitleDiv">항목명</div>
+        <div class="historyListWriterDiv">수정자</div>
+        <div class="historyListIndateDiv">수정날짜</div>
+    </div>
+    <div class="historyListContentsDiv">
+    @foreach(var historyList in @ViewBag.historyList){
+        <div class="historyContentsLineDiv">
+            <div class="historyListTitleDiv"><a href="@Html.Raw(Url.Action("HistoryDetailView", new { aIdx = @historyList.aIdx, saIdx = @historyList.saIdx }))">@historyList.Title </a></div>
+            <div class="historyListWriterDiv">@historyList.Writer</div>
+            <div class="historyListIndateDiv">@historyList.Indate</div>
+        </div>
+    }
+    </div>
+</div>
+<input type="hidden" name="aIdx" value="@ViewBag.aIdx" />
+
+<script type="text/javascript">
+    $(".historyListContentsDiv .historyListTitleDiv:even").css('background-color', '#f9f9f9');
+    $(".historyListContentsDiv .historyListTitleDiv:odd").css('background-color', '#efefff');
+    $(".historyListContentsDiv .historyListWriterDiv:even").css('background-color', '#f9f9f9');
+    $(".historyListContentsDiv .historyListWriterDiv:odd").css('background-color', '#efefff');
+    $(".historyListContentsDiv .historyListIndateDiv:even").css('background-color', '#f9f9f9');
+    $(".historyListContentsDiv .historyListIndateDiv:odd").css('background-color', '#efefff');
+</script>

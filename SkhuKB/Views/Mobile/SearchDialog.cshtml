@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_MobileLayout.cshtml";
+}
+
+<!-- Start of second page -->
+<div data-role="page" id="bar">
+@using (Html.BeginForm("Index", "Mobile/ArticleList", FormMethod.Get))
+{
+    <div data-role="header">
+        <select data-theme="a" name="selecter">
+                <option value="title">제목</option>
+                <option value="contents">내용</option>
+                <option value="writer">글쓴이</option>
+                <option value="titleContents">제목+내용</option>
+            </select>
+    </div><!-- /header -->
+ 
+    <div data-role="content"> 
+        <input type="search" name="searchText" />
+        <input type="submit"  data-theme="e" value="검색">
+        <a href="#" data-role="button" data-rel="back" data-theme="b">닫기</a>
+    </div><!-- /content -->
+}
+</div><!-- /page -->

@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Shared/_MobileMainLayout.cshtml";
+}
+<div>
+@if (ViewBag.subArticleList == null || (ViewBag.subArticleList).Count == 0)
+{
+    <div>
+        <h4>항목은 있으나 아직 내용이 입력되지 않았습니다.</h4>
+    </div>
+}
+else
+{
+    <ul data-role="listview">
+     @foreach (var item in ViewBag.subArticleList)
+     {
+         <li data-theme="d">
+                <h3>@item.Title</h3>
+                <ul data-theme="b">
+                    @Html.Raw(@SkhuKB.Util.StringUtil.wikiLink(@SkhuKB.Util.StringUtil.XSSConverter(@item.Contents)))
+                </ul>
+         </li>
+     }
+    </ul>
+}
+</div>

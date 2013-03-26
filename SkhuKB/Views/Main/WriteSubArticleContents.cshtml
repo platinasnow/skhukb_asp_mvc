@@ -1,0 +1,118 @@
+﻿@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<style type="text/css">
+    .titleBox
+    {
+        width: 100%;
+    }
+
+
+    .buttonDiv
+    {
+        background-color: gray;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align: right;
+        padding-right: 30px;
+    }
+
+        .buttonDiv a.buttons
+        {
+            color: white;
+            font-weight: bold;
+            cursor:pointer;
+        }
+
+    .container
+    {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        min-height: 400px;
+        height: auto !important;
+        height: 400px;
+        padding: 10px;
+        border: 1px solid lightgray;
+    }
+</style>
+
+<div>
+
+    <div class="container">
+        <div>
+            <label>제 목 </label>
+            <input type="text" name="title" id="title" class="titleBox" maxlength="50" tabindex="1" />
+        </div>
+        <textarea id="txtContent" name="txtContent" rows="30" tabindex="2" style="width:100%;"></textarea>
+
+        <input type="file" name="files" id="file1" value="" />
+        <input type="file" name="files" id="file2" />
+        <div class="a1"> </div>
+    </div>
+    <div class="buttonDiv">
+        <a class="buttons" id="SaveContents" onclick="SaveContents_Click()">저장</a>
+        <a class="buttons" id="cancel" onclick="onCancelBtn()">취소</a>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="/se/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="/se/js/jindo.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+    var oEditors = [];
+	    nhn.husky.EZCreator.createInIFrame({
+	        oAppRef: oEditors,
+	        elPlaceHolder: document.getElementById('txtContent'), // html editor가 들어갈 textarea id
+	        sSkinURI: "/se/SmartEditor2Skin.html", 			// html editor가 skin url
+	        htParams: { bUseToolbar: true,
+	            fOnBeforeUnload: function () {
+	                //alert("아싸!");	
+	            }
+	        }, //boolean
+	        fOnAppLoad: function () {
+                toolbarTabDisabled(); // tabIndex를 위해 툴바에 tab이 가지 않게 한다.
+	            @if (@ViewBag.detailItem != null){
+
+	                @:var contents = '@Html.Raw(@ViewBag.detailItem.Contents.Replace("\r\n", "").Replace("'", ""))';
+
+	                @:document.getElementById("title").value = '@ViewBag.detailItem.Title';
+	            
+	                @:oEditors.getById["txtContent"].exec("PASTE_HTML", [contents]); //로딩이 완료된 후에 본문에 삽입되는 text입니다.
+	            }
+	        },
+	        fCreator: "createSEditor2"
+	    });
+
+    function SaveContents_Click() {
+        oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
+        if (document.getElementById("title").value == "") {
+            alert('제목을 입력하여야합니다.');
+            return;
+        } else if (document.getElementById('txtContent').value == '<br>' || document.getElementById('txtContent').value == '') {
+            alert('내용을 입력하여야합니다.');
+            return;
+        }
+
+        var searchForm = document.getElementById('searchForm');
+        searchForm.action = '@Html.Raw(Url.Action("WriteSubArticleSubmit", new { aIdx = @ViewBag.aIdx, saIdx = @ViewBag.saIdx, writeType = "add" }))';
+        searchForm.submit();
+    }
+    function onCancelBtn() {
+        history.go(-1);
+    }
+
+    window.onload = function () {
+        document.getElementById("title").focus();
+    }
+
+    document.getElementsByTagName("iframe")[0].tabIndex = "2";
+    function toolbarTabDisabled(){
+        jQuery("iframe").contents().find('body').find(".se2_input_wysiwyg")[0].tabIndex = 1;
+        var buttonList = jQuery("iframe").contents().find('body').find(".se2_text_tool").find("button");
+        for(var idx=0; idx< buttonList.length ; idx++){
+            buttonList[idx].tabIndex = -1;
+        }   
+    }
+</script>

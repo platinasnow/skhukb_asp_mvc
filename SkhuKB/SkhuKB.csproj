@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A05DC3DC-178B-4C74-8BC9-FEAABFA9ED25}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SkhuKB</RootNamespace>
+    <AssemblyName>SkhuKB</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages" />
+    <Reference Include="System.Web.Helpers" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\MobileController.cs" />
+    <Compile Include="DAO\ArticleDAO.cs" />
+    <Compile Include="DAO\FileDAO.cs" />
+    <Compile Include="DAO\SubArticleDAO.cs" />
+    <Compile Include="DAO\UserDAO.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ArticleVO.cs" />
+    <Compile Include="Models\FileVO.cs" />
+    <Compile Include="Models\PageVO.cs" />
+    <Compile Include="Util\Paging.cs" />
+    <Compile Include="Models\SecurityVO.cs" />
+    <Compile Include="Models\SubArticleVO.cs" />
+    <Compile Include="Models\UserVO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="se\popup\quick_photo\FileUploader.aspx.cs">
+      <DependentUpon>FileUploader.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="se\popup\quick_photo\FileUploader.aspx.designer.cs">
+      <DependentUpon>FileUploader.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Util\DBConn.cs" />
+    <Compile Include="Util\DownloadResult.cs" />
+    <Compile Include="Util\StringUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="se\css\smart_editor2.css" />
+    <Content Include="se\css\smart_editor2_in.css" />
+    <Content Include="se\css\smart_editor2_items.css" />
+    <Content Include="se\css\smart_editor2_out.css" />
+    <Content Include="se\img\bg_b1.png" />
+    <Content Include="se\img\bg_find_h3.gif" />
+    <Content Include="se\img\bg_line1.gif" />
+    <Content Include="se\img\bg_quote2.gif" />
+    <Content Include="se\img\bg_set.gif" />
+    <Content Include="se\img\bg_tool2.gif" />
+    <Content Include="se\img\btn_set.png" />
+    <Content Include="se\img\bx_set_110302.gif" />
+    <Content Include="se\img\editor_guideline_698.gif" />
+    <Content Include="se\img\editor_guideline_890.gif" />
+    <Content Include="se\img\icon_set.gif" />
+    <Content Include="se\img\photoQuickPopup\bg_drag_image.png" />
+    <Content Include="se\img\photoQuickPopup\btn_cancel.png" />
+    <Content Include="se\img\photoQuickPopup\btn_confirm.png" />
+    <Content Include="se\img\photoQuickPopup\btn_confirm2.png" />
+    <Content Include="se\img\photoQuickPopup\btn_del.png" />
+    <Content Include="se\img\photoQuickPopup\btn_find.png" />
+    <Content Include="se\img\text_tool_set.png" />
+    <Content Include="se\img\text_tool_set2.png" />
+    <Content Include="se\js\HuskyEZCreator.js" />
+    <Content Include="se\js\jindo.min.js" />
+    <Content Include="se\js\jindo_component.js" />
+    <Content Include="se\js\loader-min.js" />
+    <Content Include="se\js\SE2BasicCreator.js" />
+    <Content Include="se\js\SE2B_Configuration.js" />
+    <Content Include="se\js_src\attach\attach_photo\hp_SE2M_AttachQuickPhoto.js" />
+    <Content Include="se\js_src\common\base\hp_SE2M_Toolbar.js" />
+    <Content Include="se\js_src\fundamental\advanced\hp_SE2M_FindReplacePlugin.js" />
+    <Content Include="se\js_src\fundamental\advanced\hp_SE2M_Quote.js" />
+    <Content Include="se\js_src\fundamental\advanced\hp_SE2M_SCharacter.js" />
+    <Content Include="se\js_src\fundamental\advanced\hp_SE2M_TableBlockStyler.js" />
+    <Content Include="se\js_src\fundamental\advanced\hp_SE2M_TableCreator.js" />
+    <Content Include="se\js_src\fundamental\advanced\hp_SE2M_TableEditor.js" />
+    <Content Include="se\js_src\fundamental\advanced\N_FindReplace.js" />
+    <Content Include="se\js_src\fundamental\advanced\SE2M_TableTemplate.js" />
+    <Content Include="se\js_src\fundamental\base\colorpicker.js" />
+    <Content Include="se\js_src\fundamental\base\hp_SE2M_BGColor.js" />
+    <Content Include="se\js_src\fundamental\base\hp_SE2M_ColorPalette.js" />
+    <Content Include="se\js_src\fundamental\base\hp_SE2M_ExecCommand.js" />
+    <Content Include="se\js_src\fundamental\base\hp_SE2M_FontColor.js" />
+    <Content Include="se\js_src\fundamental\base\hp_SE2M_FontNameWithLayerUI.js" />
+    <Content Include="se\js_src\fundamental\base\hp_SE2M_FontSizeWithLayerUI.js" />
+    <Content Include="se\js_src\fundamental\base\hp_SE2M_Hyperlink.js" />
+    <Content Include="se\js_src\fundamental\base\hp_SE2M_LineHeightWithLayerUI.js" />
+    <Content Include="se\js_src\fundamental\base\hp_SE2M_LineStyler.js" />
+    <Content Include="se\js_src\fundamental\base\hp_SE_WYSIWYGStyleGetter.js" />
+    <Content Include="se\js_src\fundamental\base\hp_SE_WYSIWYGStyler.js" />
+    <Content Include="se\js_src\fundamental\editing\hp_SE2M_EditingModeChanger.js" />
+    <Content Include="se\js_src\fundamental\editing\hp_SE_EditingAreaManager.js" />
+    <Content Include="se\js_src\fundamental\editing\hp_SE_EditingAreaVerticalResizer.js" />
+    <Content Include="se\js_src\fundamental\editing\hp_SE_EditingArea_HTMLSrc.js" />
+    <Content Include="se\js_src\fundamental\editing\hp_SE_EditingArea_TEXT.js" />
+    <Content Include="se\js_src\fundamental\editing\hp_SE_EditingArea_WYSIWYG.js" />
+    <Content Include="se\js_src\fundamental\editing\hp_SE_WYSIWYGEnterKey.js" />
+    <Content Include="se\js_src\husky_framework\hp_CorePlugin.js" />
+    <Content Include="se\js_src\husky_framework\hp_HuskyRangeManager.js" />
+    <Content Include="se\js_src\husky_framework\HuskyCore.js" />
+    <Content Include="se\js_src\husky_framework\HuskyRange.js" />
+    <Content Include="se\js_src\quick_editor\hp_SE2M_QuickEditor_Common.js" />
+    <Content Include="se\js_src\service\hp_SE2B_CSSLoader.js" />
+    <Content Include="se\js_src\service\hp_SE2B_Customize_ToolBar.js" />
+    <Content Include="se\js_src\service\hp_SE_OuterIFrameControl.js" />
+    <Content Include="se\js_src\service\hp_SE_ToolbarToggler.js" />
+    <Content Include="se\js_src\service\husky_SE2B_Lang_ko_KR.js" />
+    <Content Include="se\js_src\shortcut\hp_Hotkey.js" />
+    <Content Include="se\js_src\shortcut\shortcut.js" />
+    <Content Include="se\js_src\util\hp_ActiveLayerManager.js" />
+    <Content Include="se\js_src\util\hp_DialogLayerManager.js" />
+    <Content Include="se\js_src\util\hp_LazyLoader.js" />
+    <Content Include="se\js_src\util\hp_MessageManager.js" />
+    <Content Include="se\js_src\util\hp_SE2M_ImgSizeRatioKeeper.js" />
+    <Content Include="se\js_src\util\hp_SE2M_Utils.js" />
+    <Content Include="se\js_src\util\hp_StringConverterManager.js" />
+    <Content Include="se\js_src\util\hp_Utils.js" />
+    <Content Include="se\popup\quick_photo\callback.html" />
+    <Content Include="se\popup\quick_photo\FileUploader.aspx" />
+    <Content Include="se\popup\quick_photo\jindo.min.js" />
+    <Content Include="se\popup\quick_photo\jindo_fileUpload.js" />
+    <Content Include="se\popup\quick_photo\Photo_Quick_UploadPopup.html" />
+    <Content Include="se\popup\quick_photo\QuickPhotoPopup.js" />
+    <Content Include="se\readme.txt" />
+    <Content Include="se\release_notes.txt" />
+    <Content Include="se\SmartEditor2.html" />
+    <Content Include="se\SmartEditor2Skin.html" />
+    <Content Include="se\smart_editor2_inputarea.html" />
+    <Content Include="se\smart_editor2_inputarea_ie8.html" />
+    <Content Include="se\src_include.txt" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_MainLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Login\LoginView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Main\ArticleList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Main\DetailView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Main\HistoryDetailView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Main\HistoryListView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Main\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Main\WriteSubArticleContents.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UploadFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Login\LoginViewMobile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Main\IndexMobile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_MobileLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_MobileMainLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Mobile\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Mobile\SearchDialog.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Mobile\ArticleList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Mobile\SubArticleList.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>4309</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://172.30.3.27/SkhuKB</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>http://127.0.0.1/SkhuKB</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

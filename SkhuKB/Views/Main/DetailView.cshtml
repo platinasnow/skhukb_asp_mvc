@@ -1,0 +1,113 @@
+﻿@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<style type="text/css">
+    .subTitleDiv
+    {
+        border-bottom: 2px solid #000;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 10px;
+        text-align: right;
+    }
+
+    .buttonDiv
+    {
+        background-color: gray;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align: right;
+        padding-right: 30px;
+    }
+
+    .buttonDiv a.buttons
+    {
+        color: white;
+        font-weight: bold;
+    }
+
+    .detailViewDiv
+    {
+        overflow: auto;
+    }
+
+    .fileDiv
+    {
+        text-align: right;
+        padding-right: 20px;
+        margin-top: 10px;
+    }
+
+    .container
+    {
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        min-height:400px;
+        height:auto !important;
+        height:400px;
+
+        padding: 10px;
+
+        border: 1px solid lightgray;
+    }
+</style>
+<div class="buttonDiv">
+    @Html.ActionLink("추가", "WriteSubArticleContents", new { aIdx = ViewBag.aIdx, saIdx = @ViewBag.saIdx, writeType = "add" }, new { id = "addBtn", @class = "buttons" })
+    @Html.ActionLink("수정", "WriteSubArticleContents", new { aIdx = ViewBag.aIdx, saIdx = @ViewBag.saIdx, writeType = "modify" }, new { id = "modifyBtn", @class = "buttons", @style = (@ViewBag.detailItem == null ? "display:none" : "display:inline") })
+    @Html.ActionLink("삭제", "DeleteSubArticle", new { aIdx = ViewBag.aIdx, saIdx = @ViewBag.saIdx }, new { id = "deleteBtn", @class = "buttons", @style = (@ViewBag.detailItem == null ? "display:none" : "display:inline") })
+</div>
+<div class="detailViewDiv">
+
+    @if (@ViewBag.articleItem == null)
+    {
+        <div class="container">
+            <h3>아직 항목이 입력되지 않았습니다.</h3>
+        </div>
+ 
+    }
+    else if (ViewBag.detailItem == null)
+    {
+        <div class="container">
+            <h3>항목은 있으나 아직 내용이 입력되지 않았습니다.</h3>
+        </div>
+ 
+    }
+    else
+    {
+        <div class="container">
+            <div>
+                <h3>@ViewBag.detailItem.Title</h3>
+            </div>
+            <div class="subTitleDiv">
+                <div>수정인 : @ViewBag.detailItem.Writer</div>
+                <div>최종수정날짜 :@ViewBag.detailItem.Indate</div>
+            </div>
+            <div>
+                <div class="fileDiv">
+
+                    @if (!(ViewBag.fileList == null || ViewBag.fileList.Count == 0))
+                    {
+                        <b>파일첨부</b><br />
+                        foreach (var fileList in ViewBag.fileList)
+                        {
+                        <div><a href="@Url.Action("FileDownload", new { fileName = @fileList.fileName })">@SkhuKB.Util.StringUtil.getOriginalFileName(@fileList.fileName)</a></div>
+                        }
+                    }
+                </div>
+                <br />
+                <br />
+
+                @Html.Raw(@SkhuKB.Util.StringUtil.wikiLink(@SkhuKB.Util.StringUtil.XSSConverter(@ViewBag.detailItem.Contents)))
+
+            </div>
+        </div>
+       
+    }
+</div>
+<div class="buttonDiv">
+    @Html.ActionLink("추가", "WriteSubArticleContents", new { aIdx = ViewBag.aIdx, saIdx = @ViewBag.saIdx, writeType = "add" }, new { id = "addBtn", @class = "buttons" })
+    @Html.ActionLink("수정", "WriteSubArticleContents", new { aIdx = ViewBag.aIdx, saIdx = @ViewBag.saIdx, writeType = "modify" }, new { id = "modifyBtn", @class = "buttons", @style = (@ViewBag.detailItem == null ? "display:none" : "display:inline") })
+    @Html.ActionLink("삭제", "DeleteSubArticle", new { aIdx = ViewBag.aIdx, saIdx = @ViewBag.saIdx }, new { id = "deleteBtn", @class = "buttons", @style = (@ViewBag.detailItem == null ? "display:none" : "display:inline") })
+</div>
+<input type="hidden" name="writeType" id="writeType" />

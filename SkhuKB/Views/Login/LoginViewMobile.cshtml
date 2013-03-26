@@ -1,0 +1,25 @@
+﻿@model SkhuKB.Models.UserVO
+@{
+    ViewBag.Title = "LoginViewMobile";
+    Layout = "~/Views/Shared/_MobileLayout.cshtml";
+}
+<div data-role="page" data-theme="b">
+    <div data-role="header"> <h3>SKHU_KnowledgeBase </h3></div>
+    <div data-role="content">
+    @using (Html.BeginForm("Index", "Login/LoginViewMobile", FormMethod.Post, new { data_ajax = "false" }))
+    {
+        <div data-role="fieldcontain" style="margin-bottom:60px;">
+            <p><label>아이디</label></p>
+            @Html.TextBoxFor(x => x.Username, new { maxlength = 10, TABINDEX = 1 })
+            <p><label>비밀번호</label></p>
+            @Html.PasswordFor(x => x.Password, new { maxlength = 10, TABINDEX = 2 })
+        </div>
+        <input type="submit" value="로그인" data-theme="b"/>
+    }
+    </div>
+    <p><h4>@ViewBag.errorMsg</h4><p>
+</div>
+<script type="text/javascript">
+    /* 에러메세지 pageinit 참고 */
+    
+</script>

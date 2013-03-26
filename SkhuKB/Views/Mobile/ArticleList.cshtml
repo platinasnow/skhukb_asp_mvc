@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_MobileMainLayout.cshtml";
+}
+
+<div>
+@if (ViewBag.articleList == null || (ViewBag.articleList).Count == 0)
+{
+    <div>
+        <h4>검색된 값이 없습니다.</h4>
+    </div>
+}
+else
+{
+    <ul data-role="listview">
+     @foreach (var item in ViewBag.articleList)
+     {
+         <li data-theme="d">
+                <a href="/Mobile/SubArticleList?aIdx=@item.aIdx">
+                    <h3>@item.Title</h3>
+                    <p>@item.Contents</p>
+                </a>
+         </li>
+     }
+    </ul>
+}
+</div>

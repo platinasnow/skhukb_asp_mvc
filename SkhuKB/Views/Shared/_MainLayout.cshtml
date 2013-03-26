@@ -1,0 +1,132 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .leftMenu
+    {
+        width: 15%;
+        float: left;
+        border: 1px solid lightgray;
+        padding: 3px;
+        margin-top: 10px;        
+        overflow: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+    }
+
+    .contentsDiv
+    {
+        width: 80%;
+        float: left;
+        padding: 1%;
+        overflow: auto;
+        padding-bottom: 10px;
+    }
+
+    .aIdxHeader
+    {
+        font-size: 20px;
+        font-weight: bold;
+        font-family: 맑은 고딕;
+        text-align: center;
+    }
+
+    .ItemStyle
+    {
+        font-size: 11px;
+    }
+
+    a:link
+    {
+        text-decoration: none;
+        color: #333333;
+    }
+
+    a:visited
+    {
+        text-decoration: none;
+        color: #333333;
+    }
+
+    a:active
+    {
+        text-decoration: none;
+        color: #333333;
+    }
+
+    a:hover
+    {
+        text-decoration: underline;
+        color: red;
+    }
+
+    .itemList
+    {
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        border: 1px solid #DBDBDB;
+        text-align: left;
+    }
+
+    .currentLink
+    {
+        color:red !important;
+        font-weight:bold;
+    }
+
+    a#btnAddItem, a#btnViewHistory
+    {
+        font-weight:bold;
+    }
+
+
+</style>
+
+<div class="leftMenu">
+    <div class="aIdxHeader">
+    @if(ViewBag.aIdx != null) {
+        @Html.ActionLink((string)ViewBag.aIdx, "DetailView", new { aIdx = ViewBag.aIdx })
+    }
+    </div>
+
+    @if (!(ViewBag.subArticleList == null || (ViewBag.subArticleList).Count == 0))
+    {
+        for(int i=0; i<ViewBag.subArticleList.Count; i++)
+        {
+            var item = ViewBag.subArticleList[i];
+        <div class="itemList">
+            <a class="ItemStyle @(@item.saIdx == ViewBag.saIdx ? "currentLink":"") " href="@Html.Raw(Url.Action("DetailView", new { aIdx = @item.aIdx, saIdx = @item.saIdx }))">[@(i+1)] @item.Title </a>
+        </div>
+        }
+    }
+    else if (ViewBag.aIdx != null)
+    {
+        <text>
+        <div style="text-align: center;">
+            <p>내용이 없습니다</p>
+            <p>새로운 지식을 기록하세요</p>
+            <p>
+                @Html.ActionLink("[지식 만들기]", "WriteSubArticleContents", new { aIdx = ViewBag.aIdx, saIdx = @ViewBag.saIdx, writeType = "add" }, new { id="btnAddItem"})
+            </p>
+        </div>
+        </text>
+    }
+
+    @if (ViewBag.aIdx != null)
+    {     
+        <text>
+        <div style="text-align: center;">
+            @Html.ActionLink("[이력 조회]", "HistoryListView", new { aIdx = ViewBag.aIdx, saIdx = @ViewBag.saIdx }, new { id="btnViewHistory"})
+        </div>
+        </text>
+    }
+
+
+</div>
+<div class="contentsDiv">
+
+    @RenderBody()
+</div>
+

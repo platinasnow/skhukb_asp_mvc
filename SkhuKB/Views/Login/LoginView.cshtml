@@ -1,0 +1,124 @@
+﻿@model SkhuKB.Models.UserVO
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>LoginView</title>
+    <style type="text/css">
+        .loginDiv
+        {
+            position: relative;
+            margin-top: 150px;
+            left: 50%;
+            margin-left: -200px;
+            width: 400px;
+        }
+
+        .messageDiv
+        {
+            text-align: center;
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 11px;
+            background: #000000;
+            height: 20px;
+            padding-top: 10px;
+            border-radius: 5px;
+            margin-bottom: 7px;
+        }
+
+        .loginDiv input
+        {
+            width: 22em;
+            border: 1px #cdcdcd solid;
+            padding: 0.5em 0.5em 0.5em 1.5em;
+            box-shadow: inset 0px 0px 3px #dcdcdc;
+            border-radius: 5px;
+            background: #fafafa;
+            ime-mode: disabled;
+        }
+
+            .loginDiv input:focus
+            {
+                width: 22.1em;
+                background: #fff;
+                box-shadow: inset 0px 0px 3px #fff000;
+            }
+
+        .buttonDiv
+        {
+            position: relative;
+        }
+
+        .loginBtn
+        {
+            font-size: 12px;
+            text-align: center;
+            border: 1px #ccc solid;
+            box-shadow: inset 0px 0px 3px #dcdcdc;
+            border-radius: 6px;
+            font-weight: bold;
+            width: 70px;
+            height: 30px;
+            background: #fff;
+        }
+
+            .loginBtn:active
+            {
+                background: #333;
+                color: #eee;
+            }
+
+        .labelText
+        {
+            font-size: 12px;
+        }
+
+        .buttonDiv
+        {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div class="loginDiv">
+            <div class="messageDiv">
+                로그인 하시려면 아이디와 비밀번호를 입력해주십시오.
+            </div>
+            <div class="labelText">
+                <p>아이디</p>
+                @Html.TextBoxFor(x => x.Username, new { maxlength = 10, TABINDEX = 1, autofocus = "autofocus" })
+            </div>
+            <div class="labelText">
+                <p>비밀번호</p>
+                @Html.PasswordFor(x => x.Password, new { maxlength = 10, TABINDEX = 2 })
+            </div>
+            <div class="buttonDiv">
+                <input type="submit" class="loginBtn" value="로그인" />
+            </div>
+        </div>
+    }
+</body>
+<script type="text/javascript">
+    @if (ViewBag.errorMsg != null)
+    {
+        @:alert('@ViewBag.errorMsg');
+    }
+    window.onload = function () {
+        document.getElementById("Username").focus();
+    }
+    var mobilewords = new Array("Windows CE","Mobile","iphone","iPod","Android","blackberry","nokia","webos","opera mini", "sonyericsson", "opera mobi", "iemobile");
+    for (var word in mobilewords) {
+        if (navigator.userAgent.match(mobilewords[word]) != null) {
+            location.href = '/Login/LoginViewMobile';
+            break;
+        } 
+    }
+</script>
+</html>
